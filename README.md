@@ -40,7 +40,7 @@ http://127.0.0.1:5000
 ### Prediction Page
 ![Prediction](PredictionsPage.png)
 ### Results Page
-![Results](ResultsPage.png)
+![Results](Resultspage.png)
 ## Author
 Ommi Venkata Jaswanth
 Computer Science Engineer
