@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Home • UPI Fraud Detection{% endblock %}
+{% block content %}
+<section class="hero animate-fade-in">
+  <div class="container hero-content">
+    <h1 class="hero-title">Detect UPI Fraud with Confidence</h1>
+    <p class="hero-subtitle">Ensemble AI powered by XGBoost + Neural Networks to evaluate transaction risk in seconds.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="{{ url_for('predict') }}">Try Prediction</a>
+      <a class="btn btn-ghost" href="#features">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="section">
+  <div class="container">
+    <h2 class="section-title">Why choose this model</h2>
+    <div class="cards">
+      <div class="card animate-up">
+        <h3>Ensemble Accuracy</h3>
+        <p>Weighted soft voting between XGBoost and MLP balances precision and recall for robust risk scoring.</p>
+      </div>
+      <div class="card animate-up" style="animation-delay:.1s">
+        <h3>Smart Features</h3>
+        <p>Behavioral, temporal, geospatial and device signals help flag unusual patterns effectively.</p>
+      </div>
+      <div class="card animate-up" style="animation-delay:.2s">
+        <h3>Secure by Design</h3>
+        <p>Client inputs are validated server-side and processed in-memory without persistence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

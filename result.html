@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Result • UPI Fraud Detection{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="result card animate-fade-in">
+      {% set is_fraud = 'Fraud' in prediction %}
+      <div class="result-header {{ 'fraud' if is_fraud else 'legit' }}">
+        <h2>{{ prediction }}</h2>
+      </div>
+      <div class="result-body">
+        <p class="prob">Risk score: <strong>{{ probability }}</strong></p>
+        
+        <!-- SHAP Explanation Section -->
+        <div class="shap-section">
+          <h3 class="shap-title">🔍 Prediction Explanation</h3>
+          <p class="shap-subtitle">Understanding which features influenced this prediction</p>
+          
+          <div class="shap-container">
+            <div class="shap-base-value">
+              <span class="shap-label">Base Value:</span>
+              <span class="shap-value">{{ "%.3f"|format(shap_data.base_value) }}</span>
+            </div>
+            
+            <div class="shap-features">
+              {% for feature in shap_data.features %}
+              <div class="shap-feature-item">
+                <div class="shap-feature-header">
+                  <span class="shap-feature-name">{{ feature.name }}</span>
+                  <span class="shap-feature-impact {{ 'positive' if feature.value > 0 else 'negative' }}">
+                    {{ "+%.4f"|format(feature.value) if feature.value > 0 else "%.4f"|format(feature.value) }}
+                  </span>
+                </div>
+                <div class="shap-bar-container">
+                  <div class="shap-bar {{ 'positive' if feature.value > 0 else 'negative' }}" 
+                       style="width: {{ feature.bar_width }}%">
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            
+            <div class="shap-summary">
+              <div class="shap-summary-item">
+                <span class="shap-summary-label">Features increasing risk:</span>
+                <span class="shap-summary-value positive">
+                  {{ shap_data.positive_count }}
+                </span>
+              </div>
+              <div class="shap-summary-item">
+                <span class="shap-summary-label">Features decreasing risk:</span>
+                <span class="shap-summary-value negative">
+                  {{ shap_data.negative_count }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="result-actions">
+          <a class="btn btn-primary" href="{{ url_for('predict') }}">Try another</a>
+          <a class="btn btn-ghost" href="{{ url_for('home') }}">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
