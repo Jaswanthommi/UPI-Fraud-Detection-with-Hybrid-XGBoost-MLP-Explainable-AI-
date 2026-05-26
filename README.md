@@ -34,9 +34,13 @@ http://127.0.0.1:5000
 ```
 ## Screenshots
 ### Home Page
-![Home](home.png)
+![Home](HomePage.png)
+### Freatures
+![Freatures](FreaturesPage.png)
 ### Prediction Page
-![Prediction](prediction.png)
+![Prediction](PredictionsPage.png)
+### Results Page
+![Results](ResultsPage.png)
 ## Author
 Ommi Venkata Jaswanth
 Computer Science Engineer
